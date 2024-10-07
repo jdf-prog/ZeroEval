@@ -18,6 +18,8 @@ def mapping_task_names(data_name):
         dataset = load_dataset("yuchenlin/zero-eval", "numersense-v2", split="test")
     elif data_name == "crux":
         dataset = load_dataset("flydust/zero-eval", "crux", split="test")
+    elif data_name == "math":
+        dataset = load_dataset("DongfuJiang/zeroeval", "math", split="test")
     elif data_name == "math-l5":
         dataset = load_dataset("AI-MO/aimo-validation-math-level-5", split="train")
     elif data_name == "gpqa-diamond":
@@ -26,6 +28,8 @@ def mapping_task_names(data_name):
         dataset = load_dataset("DongfuJiang/zeroeval", "mmlu_pro_lite", split="test")
     elif data_name == "gpqa-main":
         dataset = load_dataset("DongfuJiang/zeroeval", "gpqa_main", split="test")
+    elif data_name == "aime-2024-II":
+        dataset = load_dataset("DongfuJiang/zeroeval", "aime_2024_II", split="test")
     else:
         raise ValueError(f"Data name {data_name} not supported")
     return dataset, id_name
@@ -40,7 +44,7 @@ def prompt_generation(data_name, data_item, args):
         prompt = data_item["instruction"]
     elif data_name in ["zebra-grid"]:
         prompt = apply_lgp_grid_template(data_item) 
-    elif data_name in ["gsm", "math-l5"]:
+    elif data_name in ["gsm", "math-l5", "aime-2024-II", 'math']:
         question_key = "question"
         if data_name == "math-l5":
             question_key = "problem"
