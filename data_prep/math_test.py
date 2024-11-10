@@ -1,11 +1,11 @@
 import datasets
 import json
 
+from datasets import load_dataset
 dataset_path = "lighteval/MATH"
 dataset_name = "math"
 
-
-dataset = datasets.load_dataset(dataset_path, "all", split="test")
+dataset = load_dataset(dataset_path, "all", split="test")
 def extraxt_answer(solution):
     start = solution.find("\\boxed{")
     if start == -1:
