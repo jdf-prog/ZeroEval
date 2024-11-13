@@ -14,7 +14,7 @@ def shuffle_choices_and_create_example(row, index):
         "id": row['problem_id'],
         "question": row['question'],
         "problem": row['question'],
-        "answer": row['solutions'],
+        "answer": json.loads(row['solutions']) if row['solutions'] else None,
         "difficulty": row['difficulty'],
         "testcases": row['input_output'],
         "source": dataset_path,
